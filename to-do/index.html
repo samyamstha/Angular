@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TO-DO List</title>
+	
+
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="css\bootstrap.min.css">
+
+  <style>
+  	p.done-true{
+  		color: grey;
+  		font-style: italic;
+  		  		text-decoration:line-through;
+
+  	}
+
+  	p[contenteditable="true"]{
+  		background: grey;
+  		padding:3px;
+
+  	}
+
+  
+
+ 
+  </style>
+
+</head>
+<body ng-app="mainApp"  ng-controller="app">
+
+<div class="container" >
+<center><h1> Add a task!</h1></center>
+
+<div class="col-md-4  col-md-offset-4" style="position: relative;">
+
+<form class="form-group">
+<input type="text" class="form-control" ng-model="task" ng-keyup="searchEnter();">
+
+</form>
+
+</div>
+
+<div class="tasksToShow col-md-4 col-md-offset-4">
+
+<ul class="list-group">
+	<li class="list-group-item " ng-repeat="oneTask in tasks track by $index" style="border-bottom :1px solid black; border-top: 1px solid black">
+		<form class="form-group ">
+	<div class="checkbox" style="margin-left: 10%;">
+
+		<input  type="checkbox" ng-model="oneTask.status" ng-change="addEdited(oneTask.taskMessage)" >
+		<p contenteditable="false" ng-dblclick="contentEdit(oneTask.taskMessage)" ng-keydown="enterAgain(oneTask.taskMessage)" ng-model="oneTask.taskMessage" class="done-{{oneTask.status}}"  style="overflow:auto; overflow-wrap: break-word;   width:100%; height:100px;">
+		{{oneTask.taskMessage}}
+		
+		</p>
+		
+		</div>
+		</form>
+	</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="angular_script.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+</html>
